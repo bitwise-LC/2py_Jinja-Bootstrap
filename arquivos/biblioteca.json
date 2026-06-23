@@ -1,0 +1,35 @@
+[
+    {
+        "isbn": "978-85-333-0227-3",
+        "titulo": "Dom Casmurro",
+        "autor": "Machado de Assis",
+        "genero": "Romance",
+        "ano_publicacao": 1899,
+        "editora": "Ática",
+        "paginas": 256,
+        "status": "disponivel",
+        "localizacao": "Estante A1"
+    },
+    {
+        "isbn": "978-85-359-0277-5",
+        "titulo": "O Cortiço",
+        "autor": "Aluísio Azevedo",
+        "genero": "Naturalismo",
+        "ano_publicacao": 1890,
+        "editora": "Ática",
+        "paginas": 232,
+        "status": "emprestado",
+        "localizacao": "Estante B2"
+    },
+    {
+        "isbn": "efdfgdfgdgf",
+        "titulo": "ggfgdfgfgfgd",
+        "autor": "ytytytyt",
+        "genero": "romance",
+        "ano_publicacao": 1988,
+        "editora": "atica",
+        "paginas": 650,
+        "status": "disponivel",
+        "localizacao": "fsfsfds"
+    }
+]

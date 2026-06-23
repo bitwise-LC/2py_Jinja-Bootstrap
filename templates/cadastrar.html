@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block titulo %}Cadastrar Livro{% endblock %}
+
+{% block conteudo %}
+
+    <h2 class="mb-4">Cadastrar Novo Livro</h2>
+
+    {% if mensagem %}
+        <div class="alert alert-success">
+            {{ mensagem }}
+        </div>
+    {% endif %}
+
+    {% if erro %}
+        <div class="alert alert-danger">
+            {{ erro }}
+        </div>
+    {% endif %}
+
+    <form action="/cadastrar" method="POST">
+
+        <div class="mb-3">
+            <label>ISBN</label>
+            <input type="text" name="isbn" class="form-control" placeholder="Ex: 978-85-333-0227-3" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Título</label>
+            <input type="text" name="titulo" class="form-control" placeholder="Ex: Dom Casmurro" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Autor</label>
+            <input type="text" name="autor" class="form-control" placeholder="Ex: Machado de Assis" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Gênero</label>
+            <input type="text" name="genero" class="form-control" placeholder="Ex: Romance" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Ano de Publicação</label>
+            <input type="number" name="ano_publicacao" class="form-control" placeholder="Ex: 1899" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Editora</label>
+            <input type="text" name="editora" class="form-control" placeholder="Ex: Ática" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Páginas</label>
+            <input type="number" name="paginas" class="form-control" placeholder="Ex: 256" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Localização</label>
+            <input type="text" name="localizacao" class="form-control" placeholder="Ex: Estante A1" required>
+        </div>
+
+        <button type="submit" class="btn btn-success">Salvar Livro</button>
+        <a href="/" class="btn btn-secondary">Voltar</a>
+
+    </form>
+
+{% endblock %}
