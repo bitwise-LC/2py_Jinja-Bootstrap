@@ -11,8 +11,17 @@
     <!-- Estilo extra simples -->
     <style>
         body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
             background-color: #f8f9fa;
         }
+
+        main {
+            flex: 1; 
+        }
+
 
         .navbar {
             background-color: #343a40;
@@ -24,8 +33,6 @@
         }
 
         footer {
-            position: absolute;
-            bottom: 0;
             width: 100%;
             background-color: #343a40;
             color: white;
@@ -37,18 +44,20 @@
 </head>
 <body>
 
-    <!-- Barra de navegação -->
-    <nav class="navbar navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="/">📚 Biblioteca</a>
-            <a class="btn btn-outline-light" href="/cadastrar">+ Novo Livro</a>
-        </div>
-    </nav>
+    <main>
+        <!-- Barra de navegação -->
+        <nav class="navbar navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="/">📚 Biblioteca</a>
+                <a class="btn btn-outline-light" href="/cadastrar">+ Novo Livro</a>
+            </div>
+        </nav>
 
-    <!-- Conteúdo da página -->
-    <div class="container mt-4">
-        {% block conteudo %}{% endblock %}
-    </div>
+        <!-- Conteúdo da página -->
+        <div class="container mt-4">
+            {% block conteudo %}{% endblock %}
+        </div>
+    </main>
 
     <!-- Rodapé -->
     <footer>

@@ -8,8 +8,7 @@ biblioteca = dados.carregar_do_arquivo()
 
 @app.route('/')
 def index():
-    biblioteca_atual = dados.carregar_do_arquivo()
-    return render_template('index.html', livros=biblioteca_atual)
+    return render_template('index.html', livros=biblioteca)
 
 
 @app.route('/cadastrar', methods=['GET'])
@@ -66,7 +65,7 @@ def achar_isbn(isbn):
     return jsonify('Livro não encontrado'), 404
 
 
-@app.route('/biblioteca/delete/<isbn>', methods=['DELETE'])
+@app.route('/biblioteca/delete/<isbn>', methods=['POST'])
 def deletar_livro(isbn):
     for livro in biblioteca:
         if livro['isbn'] == isbn:
@@ -74,6 +73,65 @@ def deletar_livro(isbn):
             dados.salvar_no_arquivo(biblioteca)
             return jsonify('Livro deletado com sucesso')
     return jsonify('Livro não encontrado'), 404
+
+
+
+@app.route('/biblioteca/update/<isbn>', methods=['GET'])
+def exibir_livro(isbn=None, opcao=None):
+        livro_encontrado = None
+        for l in biblioteca:
+            if l['isbn'] == isbn:
+                livro_encontrado = l
+                break
+    
+        if not livro_encontrado:
+            return jsonify("Livro não encontrado com este ISBN.")
+        
+        return render_template('editar.html', livro=l)
+
+
+
+@app.route('/biblioteca/update/<isbn>', methods=['POST'])
+def atualizar_livro(isbn=None, opcao=None):
+    livro_encontrado = None
+    for l in biblioteca:
+        if l['isbn'] == isbn:
+            livro_encontrado = l
+            break
+    
+    if not livro_encontrado:
+        erro = 'Não existe um livro com este ISBN!'
+        return render_template('cadastrar.html', erro=erro)
+    
+    edicoes = {
+        'titulo': request.form['titulo'],
+        'autor': request.form['autor'],
+        'genero': request.form['genero'],
+        'ano_publicacao': int(request.form['ano_publicacao']),
+        'editora': request.form['editora'],
+        'paginas': int(request.form['paginas']),
+        'status': 'disponivel',
+        'localizacao': request.form['localizacao']
+    }
+
+    for chave in edicoes:
+        if chave in edicoes:
+            novo_valor = edicoes[chave]
+
+            if chave in ["ano_publicacao", "paginas"]:
+                try:
+                    novo_valor = int(novo_valor)
+                except ValueError:
+                    erro = "Erro: Este campo deve ser um número inteiro. Operação cancelada."
+                    return render_template('cadastrar.html', erro=erro)
+
+            livro_encontrado[chave] = novo_valor
+        else:
+            erro = "Opção inválida."
+            return render_template('cadastrar.html', erro=erro)
+
+    dados.salvar_no_arquivo(biblioteca)
+    return render_template('editar.html', livro=l)
 
 
 if __name__ == "__main__":

@@ -22,6 +22,7 @@
                         <th>Páginas</th>
                         <th>Status</th>
                         <th>Localização</th>
+                        <th>Operações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,6 +43,7 @@
                             {% endif %}
                         </td>
                         <td>{{ livro.localizacao }}</td>
+                        <td><a class="btn btn-primary" href="/biblioteca/update/{{ livro.isbn }}">Editar</a><form action="/biblioteca/delete/{{ livro.isbn }}" method="post"><button class="btn btn-danger mt-2">Deletar</button></form></td>
                     </tr>
                     {% endfor %}
                 </tbody>
